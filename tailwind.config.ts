@@ -3,8 +3,13 @@ import type { Config } from 'tailwindcss';
 const config: Config = {
   content: ['./app/**/*.{ts,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        banner: "url('/assets/images/banner.jpg')",
+      },
+    },
+    plugins: [],
   },
-  plugins: [],
 };
+
 export default config;
