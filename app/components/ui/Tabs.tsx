@@ -37,7 +37,7 @@ interface TabsListProps {
 export const TabsList = (props: TabsListProps) => {
   const { children, className } = props;
 
-  const classes = ['', className].join(' ').trim();
+  const classes = ['flex divide-x divide-gray-600', className].join(' ').trim();
 
   return <div className={classes}>{children}</div>;
 };
@@ -45,16 +45,21 @@ export const TabsList = (props: TabsListProps) => {
 interface TabsButtonProps {
   value: string;
   label: string;
+  className?: string;
 }
 
 export const TabsButton = (props: TabsButtonProps) => {
-  const { value, label } = props;
+  const { className, value, label } = props;
 
   const { activeTab, setActiveTab } = React.useContext(TabsContext);
 
   const isCurrentTab = activeTab === value;
 
-  const classes = ['', isCurrentTab ? '' : ''].join(' ');
+  const classes = [
+    'font-bold',
+    isCurrentTab ? 'bg-yellow-200 text-black' : '',
+    className,
+  ].join(' ');
 
   return (
     <button className={classes} onClick={() => setActiveTab(value)}>
@@ -66,16 +71,17 @@ export const TabsButton = (props: TabsButtonProps) => {
 interface TabsContentProps {
   value: string;
   children?: React.ReactNode;
+  className?: string;
 }
 
 export const TabsContent = (props: TabsContentProps) => {
-  const { value, children } = props;
+  const { value, children, className } = props;
 
   const { activeTab } = React.useContext(TabsContext);
 
   const isCurrentTab = activeTab === value;
 
-  const classes = ['', isCurrentTab ? '' : ''].join(' ');
+  const classes = ['', className].join(' ');
 
   return isCurrentTab ? <div className={classes}>{children}</div> : null;
 };
