@@ -13,7 +13,7 @@ interface ContainerProps {
   children: React.ReactNode;
   className?: string;
   id?: string;
-  screen?: 'sm' | 'md' | 'lg' | 'xl';
+  screen?: keyof typeof screenVariants;
 }
 
 export const Container = (props: ContainerProps) => {
